@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# CPQ pre-commit hook: warn on staged changes to CPQ governance files.
+set -e
+ROOT="$(git rev-parse --show-toplevel)"
+exec node "$ROOT/scripts/cpq-checks.mjs" pre-commit

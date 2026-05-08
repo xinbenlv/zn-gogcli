@@ -1,0 +1,13 @@
+# Live CPQ ledger — regenerate via `node scripts/cpq-checks.mjs rebuild-ledger`.
+#
+# Order must match the queue order in cpq-base..cpq-head, element-by-element.
+# `current_commit` is the 8-char abbreviated SHA, except for cpq-capstone-0
+# which always uses the literal string `cpq-head` (self-reference).
+#
+# Queue ordering rules (verifier-enforced):
+#   cpq-cornerstone-N    — ascending N, no gaps
+#   patch-fix-test-pr*   — ascending PR number
+#   patch-fix-func-pr*   — ascending PR number
+#   patch-feat-pr*       — ascending PR number
+#   cpq-capstone-N       — descending N, no gaps, ending at cpq-capstone-0
+patches: []

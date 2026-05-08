@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# CPQ commit-msg hook: validate carried-commit subject + body shape.
+set -e
+ROOT="$(git rev-parse --show-toplevel)"
+exec node "$ROOT/scripts/cpq-checks.mjs" commit-msg "$1"

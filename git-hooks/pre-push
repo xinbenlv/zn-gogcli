@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# CPQ pre-push hook: full queue validity check before pushing.
+set -e
+ROOT="$(git rev-parse --show-toplevel)"
+exec node "$ROOT/scripts/cpq-checks.mjs" verify
