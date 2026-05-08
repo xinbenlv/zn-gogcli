@@ -4,7 +4,7 @@ SHELL := /bin/bash
 .DEFAULT_GOAL := build
 
 .PHONY: build build-safe gog gogcli gog-help gogcli-help help fmt fmt-check lint test ci tools docs-commands docs-site docs-check
-.PHONY: worker-ci
+.PHONY: worker-ci codesign-local codesign-bootstrap
 
 BIN_DIR := $(CURDIR)/bin
 BIN := $(BIN_DIR)/gog
@@ -37,6 +37,13 @@ endif
 build:
 	@mkdir -p $(BIN_DIR)
 	@go build -ldflags "$(LDFLAGS)" -o $(BIN) $(CMD)
+	@./scripts/codesign-macos-local.sh $(BIN)
+
+codesign-local: build
+	@./scripts/codesign-macos-local.sh $(BIN)
+
+codesign-bootstrap:
+	@./scripts/codesign-macos-bootstrap.sh
 
 build-safe:
 	@./build-safe.sh $${PROFILE:-safety-profiles/agent-safe.yaml} -o $${OUTPUT:-$(BIN_DIR)/gog-safe}
