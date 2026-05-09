@@ -33,6 +33,7 @@ go.work.sum
 
 # Local tools
 .tools/
+.worktrees/
 
 # Local build output
 bin/
